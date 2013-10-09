@@ -1,0 +1,14 @@
+name: ubuntu-docker
+version: 0.0.1
+inherits: wercker/ubuntu12.04-webessentials@0.0.11
+type: service
+platform: ubuntu@12.04
+description: wercker box with docker
+keywords:
+  - docker
+script: |
+  sudo sh -c "wget -O - http://get.docker.io/gpg | apt-key add -"
+  sudo sh -c "echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
+  sudo apt-get update
+  sudo apt-get install --yes lxc-docker
+  sudo docker pull ubuntu:precise 
